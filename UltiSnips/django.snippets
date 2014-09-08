@@ -1,238 +1,160 @@
 priority -50
 
+##############################################
 # Generic Tags
+##############################################
+
 snippet %
-{% ${1} %}${2}
+{% $1 %}$0
 endsnippet
 
-snippet %%
-{% ${1:tag_name} %}
-	${2}
+snippet %% "{% tag %}{% endtag %}"
+{% ${1:tag} %}
+	${2:${VISUAL}}
 {% end$1 %}
+$0
 endsnippet
 
-snippet {
-{{ ${1} }}${2}
+snippet "{(})?" "{{ ... }}" r
+{{ ${1:${VISUAL:tag}} }`!p snip.rv = '}' if match.group(1) else ''`$0
 endsnippet
 
+##############################################
 # Template Tags
+##############################################
 
 snippet autoescape
 {% autoescape ${1:off} %}
-	${2}
+	${2:${VISUAL}}$0
 {% endautoescape %}
 endsnippet
 
-snippet block
-{% block ${1} %}
-	${2}
-{% endblock $1 %}
+snippet block "{% block %}"
+{% block $1${1/.+/ /}%}
+	${2:${VISUAL}}$0
+{% endblock $1${1/.+/ /}%}
 endsnippet
 
 snippet #
-{# ${1:comment} #}
+{# ${1:comment} #}$0
 endsnippet
 
 snippet comment
 {% comment %}
-	${1}
+	${1:${VISUAL:comment}}$0
 {% endcomment %}
 endsnippet
 
 snippet cycle
-{% cycle ${1:val1} ${2:val2} ${3:as ${4}} %}
+{% cycle ${1:values}${2/\w+/ as /}${2:alias} %}$0
 endsnippet
 
 snippet debug
-{% debug %}
+{% debug %}$0
 endsnippet
 
 snippet extends
-{% extends "${1:base.html}" %}
+{% extends "${1:base.html}" %}$0
 endsnippet
 
 snippet filter
 {% filter ${1} %}
-	${2}
+	${2:${VISUAL}}$0
 {% endfilter %}
 endsnippet
 
 snippet firstof
-{% firstof ${1} %}
+{% firstof ${1} %}$0
 endsnippet
 
 snippet for
 {% for ${1} in ${2} %}
-	${3}
+	${3:${VISUAL}}$0
 {% endfor %}
 endsnippet
 
 snippet empty
 {% empty %}
-	${1}
+	$0
 endsnippet
 
 snippet if
 {% if ${1} %}
-	${2}
+	${2:${VISUAL}}$0
 {% endif %}
 endsnippet
 
 snippet else
 {% else %}
-	${1}
+	$0
 endsnippet
 
 snippet ifchanged
-{% ifchanged %}${1}{% endifchanged %}
+{% ifchanged %}
+	${1:${VISUAL}}$0
+{% endifchanged %}
 endsnippet
 
 snippet ifequal
-{% ifequal ${1} ${2} %}
-	${3}
+{% ifequal ${1:val1} ${2:val2} %}
+	${3:${VISUAL}}$0
 {% endifequal %}
 endsnippet
 
 snippet ifnotequal
-{% ifnotequal ${1} ${2} %}
-	${3}
+{% ifnotequal ${1:val1} ${2:val2} %}
+	${3:${VISUAL}}$0
 {% endifnotequal %}
 endsnippet
 
 snippet include
-{% include "${1}" %}
+{% include "${1}" %}$0
 endsnippet
 
 snippet load
-{% load ${1} %}
+{% load ${1} %}$0
 endsnippet
 
 snippet now
-{% now "${1:jS F Y H:i}" %}
+{% now "${1:jS F Y H:i}" %}$0
 endsnippet
 
 snippet regroup
-{% regroup ${1} by ${2} as ${3} %}
+{% regroup ${1} by ${2} as ${3} %}$0
 endsnippet
 
 snippet spaceless
-{% spaceless %}${1}{% endspaceless %}
+{% spaceless %}
+	${1:${VISUAL}}$0
+{% endspaceless %}
 endsnippet
 
 snippet ssi
-{% ssi ${1} %}
+{% ssi "$1" %}$0
 endsnippet
 
 snippet trans
-{% trans "${1:string}" %}
+{% trans "${1}" %}$0
 endsnippet
 
 snippet url
-{% url ${1} as ${2} %}
+{% url ${1}${2/\w+/ as /}${2:alias} %}$0
+endsnippet
+
+snippet verbatim
+{% verbatim %}
+	${1:${VISUAL}}$0
+{% endverbatim %}
 endsnippet
 
 snippet widthratio
-{% widthratio ${1:this_value} ${2:max_value} ${3:100} %}
+{% widthratio ${1:this_value} ${2:max_value} ${3:max_width} %}$0
 endsnippet
 
 snippet with
-{% with ${1} as ${2} %}
-endsnippet
-
-# Template Filters
-
-# Note: Since SnipMate can't determine which template filter you are
-# expanding without the "|" character, these do not add the "|"
-# character.  These save a few keystrokes still.
-
-# Note: Template tags that take no arguments are not implemented.
-
-snippet add
-add:"${1}"
-endsnippet
-
-snippet center
-center:"${1}"
-endsnippet
-
-snippet cut
-cut:"${1}"
-endsnippet
-
-snippet date
-date:"${1}"
-endsnippet
-
-snippet default
-default:"${1}"
-endsnippet
-
-snippet defaultifnone
-default_if_none:"${1}"
-endsnippet
-
-snippet dictsort
-dictsort:"${1}"
-endsnippet
-
-snippet dictsortrev
-dictsortreversed:"${1}"
-endsnippet
-
-snippet divisibleby
-divisibleby:"${1}"
-endsnippet
-
-snippet floatformat
-floatformat:"${1}"
-endsnippet
-
-snippet getdigit
-get_digit:"${1}"
-endsnippet
-
-snippet join
-join:"${1}"
-endsnippet
-
-snippet lengthis
-length_is:"${1}"
-endsnippet
-
-snippet pluralize
-pluralize:"${1}"
-endsnippet
-
-snippet removetags
-removetags:"${1}"
-endsnippet
-
-snippet slice
-slice:"${1}"
-endsnippet
-
-snippet stringformat
-stringformat:"${1}"
-endsnippet
-
-snippet time
-time:"${1}"
-endsnippet
-
-snippet truncatewords
-truncatewords:${1}
-endsnippet
-
-snippet truncatewordshtml
-truncatewords_html:${1}
-endsnippet
-
-snippet urlizetrunc
-urlizetrunc:${1}
-endsnippet
-
-snippet wordwrap
-wordwrap:${1}
+{% with ${1:var}${2/\w+/ as /}${2:alias} %}
+	${3:${VISUAL}}$0
+{% endwith %}
 endsnippet
 
 # vim:ft=snippets:
