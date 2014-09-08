@@ -22,9 +22,6 @@ def getShell():
 	return "sh"
 endglobal
 
-###########################################################################
-#                            TextMate Snippets                            #
-###########################################################################
 snippet #!
 `!p snip.rv = '#!/bin/' + getShell() + "\n\n" `
 endsnippet
@@ -41,6 +38,68 @@ ${3:${4/(.+)/trap "/}${4:rm -f '$${1/.*\s//}'}${4/(.+)/" 0               # EXIT\
 
 endsnippet
 
+snippet here "here document (here)"
+<<-${2:'${1:TOKEN}'}
+	$0
+${1/['"`](.+)['"`]/$1/}
+endsnippet
+
+##############################################
+#  loop
+##############################################
+
+snippet for "for ... in loop" b
+for ${1:i} in ${2:list}
+do
+	${3:${VISUAL}}$0
+done
+endsnippet
+
+snippet while "while loop" b
+while ${2:[ ${1:condiction} ]}
+do
+	${3:${VISUAL}}$0
+done
+endsnippet
+
+snippet whilei "while loop with i" b
+${1:i}=${2:0}
+while [ \$$1 -lt ${3:$count} ]
+do
+	${3:${VISUAL}}$0
+	
+	i=\`expr $i + 1\`
+done
+endsnippet
+
+snippet until "until ... (done)"
+until ${2:[ ${1:condiction} ]}
+do
+	${3:${VISUAL}}$0
+done
+endsnippet
+
+##############################################
+#  if
+##############################################
+
+snippet if "if ... then" b
+if ${2:[ ${1:condiction} ]}
+then
+	${3:${VISUAL}}$0
+fi
+endsnippet
+
+snippet elif "elif ... then" b
+elif ${2:[ ${1:condiction} ]}
+then
+	${3:${VISUAL}}$0
+endsnippet
+
+##############################################
+#  case
+##############################################
+
 snippet case "case .. esac (case)"
 case ${1:word} in
 	${2:pattern} )
@@ -48,45 +107,20 @@ case ${1:word} in
 esac
 endsnippet
 
-snippet elif "elif .. (elif)"
-elif ${2:[[ ${1:condition} ]]}; then
-	${0:#statements}
+##############################################
+#  and / or
+##############################################
+
+snippet and "[ ... ] && { ... }" b
+${2:[ ${1:condiction} ]} && {
+	${3:${VISUAL}}$0
+}
 endsnippet
 
-snippet for "for ... done (for)"
-for (( i = 0; i < ${1:10}; i++ )); do
-	${0:#statements}
-done
-endsnippet
-
-snippet forin "for ... in ... done (forin)"
-for ${1:i}${2/.+/ in /}${2:words}; do
-	${0:#statements}
-done
-endsnippet
-
-snippet here "here document (here)"
-<<-${2:'${1:TOKEN}'}
-	$0
-${1/['"`](.+)['"`]/$1/}
-endsnippet
-
-snippet if "if ... then (if)"
-if ${2:[[ ${1:condition} ]]}; then
-	${0:#statements}
-fi
-endsnippet
-
-snippet until "until ... (done)"
-until ${2:[[ ${1:condition} ]]}; do
-	${0:#statements}
-done
-endsnippet
-
-snippet while "while ... (done)"
-while ${2:[[ ${1:condition} ]]}; do
-	${0:#statements}
-done
+snippet or "[ ... ] || { ... }" b
+${2:[ ${1:condiction} ]} || {
+	${3:${VISUAL}}$0
+}
 endsnippet
 
 # vim:ft=snippets:
