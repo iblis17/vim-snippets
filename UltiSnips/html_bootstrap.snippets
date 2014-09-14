@@ -1,0 +1,384 @@
+priority -40
+
+global !p
+
+from UltiSnips import UltiSnips_Manager
+
+
+def expand(key):
+	snippets = UltiSnips_Manager._snips(key, False)
+	if len(snippets) != 1:
+		return
+	snippet = snippets[0]
+
+	UltiSnips_Manager._do_snippet(snippet, key)
+
+def get_name_from_id(name):
+	m = re.match(r'(?P<name>\w+)_id', name);
+	return m.group(1) if m else name
+
+endglobal
+
+snippet form "Basic Form"
+<form role="form" ${1:action="$2"} ${3:method="${4:POST}"}$5>
+	${6:form-group}
+	${7:${VISUAL}}$0
+</form>
+endsnippet
+
+snippet form "Inline Form"
+<form class="form-inline" role="form" ${1:action="$2"} ${3:method="${4:POST}"}$5>
+	${6:form-group}
+	${7:${VISUAL}}$0
+</form><!-- form-inline -->
+endsnippet
+
+snippet form "Horizontal Form"
+<form class="form-horizontal" role="form" ${1:action="$2"} ${3:method="${4:POST}"}$5>
+	${6:form-group}
+	${7:${VISUAL}}$0
+</form><!-- form-horizontal -->
+endsnippet
+
+snippet form-group "form-group"
+<div class="form-group">
+	<label for="${1:input_id}">${2}</label>
+	<input name="${3:`!p snip.rv = get_name_from_id(t[1])`}" id="$1" type="${4:text}" ${5:placeholder="$6"} class="form-control" />$0
+</div><!-- form-group -->
+endsnippet
+
+snippet input "Input with form-control"
+<input name="$1" id="${2:$1_id}" type="${3:text}" ${4:placeholder="${5}"}${4/.+/ /}${6:value="$7"}${6/.+/ /}class="form-control" $8${8/.+/ /}/>$0
+endsnippet
+
+snippet textarea "textarea aith form-control"
+<textarea name="$1" id="${2:$1_id}" class="form-control">
+	${3:${VISUAL}}$0
+</textarea><!-- form-control -->
+endsnippet
+
+snippet checkbox
+<div class="checkbox">
+	<label>
+		<input name="$1" id="${2:$1_id}" type="checkbox" ${3:value="$4"}${3/.+/ /}/>
+		${5:${VISUAL}}$0
+	</label>
+</div><!-- checkbox -->
+endsnippet
+
+snippet checkbox-inline
+<label class="checkbox-inline">
+	<input name="$1" id="${2:$1_id}" type="checkbox" ${3:value="$4"}${3/.+/ /}/>
+	${5:${VISUAL}}$0
+</label><!-- checkbox-inline -->
+endsnippet
+
+snippet radio
+<div class="radio">
+	<label>
+		<input name="$1" id="${2:$1_id}" type="radio" ${3:value="$4"}${3/.+/ /}/>
+		${5:${VISUAL}}$0
+	</label>
+</div><!-- radio -->
+endsnippet
+
+snippet radio-inline
+<label class="radio-inline">
+	<input name="$1" id="${2:$1_id}" type="radio" ${3:value="$4"}${3/.+/ /}/>
+	${5:${VISUAL}}$0
+</label><!-- radio-inline -->
+endsnippet
+
+snippet select "select with form-control"
+<select name="$1" id="${2:$1_id}" class="form-control">
+	option$0
+</select>
+endsnippet
+
+snippet option "option tag for select"
+<option value="$1">$2</option>$0
+endsnippet
+
+snippet help-block "Help text for form"
+<span class="help-block">
+	${1:${VISUAL}}$0
+</span><!-- help-block -->
+endsnippet
+
+snippet button
+<button type="button" class="btn btn-${1:default}">${2:${VISUAL}}</button>$0
+endsnippet
+
+snippet button-a "<a> link button"
+<a href="${1:${VISUAL:#}}" role="button" class="btn btn-${2:default}${3/.+/ /}${3:btn-${4:lg}}">${5:$1}</a>$0
+endsnippet
+
+snippet close "close button"
+<button type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>$0
+endsnippet
+
+snippet caret
+<span class="caret"></span>$0
+endsnippet
+
+snippet glph "glyphicon"
+<span class="glyphicon glyphicon-${1:user}"></span>$0
+endsnippet
+
+snippet dropdown "single button dropdown"
+<div class="btn-group"><!-- single button dropdown -->
+	<button class="btn btn-${1:default} dropdown-toggle" type="button" data-toggle="dropdown">
+	${2:Dropdown}
+	<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu">
+		${3:<li class="dropdown-header">${4:Header}</li>}
+		<li><a href="#">${5:Item}</a></li>
+		${6:<li class="divider"></li>}$0
+	</ul>
+</div><!-- single button dropdown -->
+endsnippet
+
+snippet dropdown-s "split button dropdown"
+<div class="btn-group"><!-- split button dropdown -->
+	<button type="button" class="btn btn-${1:default}">${2:Dropdown}</button>
+	<button type="button" class="btn btn-${3:$1} dropdown-toggle" data-toggle="dropdown">
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		${4:<li class="dropdown-header">${5:Header}</li>}
+		<li><a href="#">${6:Item}</a></li>
+		${7:<li class="divider"></li>}$0
+	</ul>
+</div><!-- split button dropdown -->
+endsnippet
+
+snippet dropup "single button dropup"
+<div class="btn-group dropup"><!-- single button dropup -->
+	<button class="btn btn-${1:default} dropdown-toggle" type="button" data-toggle="dropdown">
+	${2:Dropdown}
+	<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu">
+		${3:<li class="dropdown-header">${4:Header}</li>}
+		<li><a href="#">${5:Item}</a></li>
+		${6:<li class="divider"></li>}$0
+	</ul>
+</div><!-- single button dropup -->
+endsnippet
+
+snippet dropup-s "split button dropup"
+<div class="btn-group dropup"><!-- split button dropup -->
+	<button type="button" class="btn btn-${1:default}">${2:Dropdown}</button>
+	<button type="button" class="btn btn-${3:$1} dropdown-toggle" data-toggle="dropdown">
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+		${4:<li class="dropdown-header">${5:Header}</li>}
+		<li><a href="#">${6:Item}</a></li>
+		${7:<li class="divider"></li>}$0
+	</ul>
+</div><!-- split button dropup -->
+endsnippet
+
+snippet disabled
+disabled="disabled"
+endsnippet
+
+snippet btn-group "Button group"
+<div class="btn-group">
+	button$1
+</div><!-- btn-group -->$0
+endsnippet
+
+snippet btn-toolbar "Button toolbae"
+<div class="btn-toolbar" role="toolbar">
+	btn-group$1
+</div><!-- btn-toolbar -->$0
+endsnippet
+
+snippet input-group
+<div class="input-group">
+	${1:<span class="input-group-addon">
+		$2
+	</span>}
+	input$3
+	${4:<span class="input-group-addon">
+		$5
+	</span>}
+</div><!-- input-group -->
+endsnippet
+
+snippet input-group-btn
+<span class="input-group-btn">
+	<button type="button" class="btn btn-${1:default}">${2:${VISUAL}}</button>
+</span><!-- input-group-btn -->$0
+endsnippet
+
+snippet nav "Nav"
+<ul class="nav nav-${1:tabs}`!p snip.rv = '/' if t[1] and t[2] else ''`${2:pills}" role="tablist">
+	<li><a href="#">$1</a></li>$0
+</ul><!-- nav -->
+endsnippet
+
+snippet nav-dropdown "Dropdown for nav"
+<li class="dropdown">
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	${1:Dropdown}
+	<span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" role="menu">
+		${2:<li><a href="#"></a></li>}$0
+	</ul>
+</li><!-- dropdown -->
+endsnippet
+
+snippet navbar
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#$2">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">${1:Brand}</a>
+		</div><!-- .navbar-header -->
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="${2:navbar-collapse-1}">
+			<ul class="nav navbar-nav">
+				${3:<li><a href="#"></a></li>}$4
+				${5:nav-dropdown}$6
+			</ul><!-- .navbar-nav -->
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search">
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+		</div><!-- .navbar-collapse -->
+	</div><!-- .container-fluid -->
+</nav><!-- .navbar -->
+endsnippet
+
+snippet navbar-form
+<form class="navbar-form">
+	<div class="form-group">
+		<input name="$1" id="${2:$1_id}" type="text" ${3:placeholder="$4"} class="form-control" />
+	</div>
+	<button type="submit" class="btn btn-default">${5:Submit}</button>
+</form><!-- .navbar-form -->
+endsnippet
+
+snippet navbar-text
+<p class="navbar-text">
+	${1:${VISUAL}}$0
+</p><!-- .navbar-text -->
+endsnippet
+
+snippet breadcrumb
+<ol class="breadcrumb">
+	${1:<li><a href="#"></a></li>}
+	<li class="active">$2</li>$0
+</ol><!-- .breadcrumb -->
+endsnippet
+
+snippet pagination
+<ul class="pagination">
+	<li><a href="#">&laquo;</a></li>
+	<li><a href="#">1</a></li>
+	<li><a href="#">2</a></li>
+	<li><a href="#">3</a></li>$0
+	<li><a href="#">&raquo;</a></li>
+</ul><!-- .pagination -->
+endsnippet
+
+snippet pager
+<ul class="pager">
+	<li><a href="#">Previous</a></li>
+	<li><a href="#">Next</a></li>
+</ul><!-- .pager -->
+endsnippet
+
+snippet badge
+<span class="badge">${1:${VISUAL}}</span>$0
+endsnippet
+
+snippet jumbotron
+<div class="jumbotron">
+	<h1>${1:Hello, world!}</h1>
+	<p>
+		${2:Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+		tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+		vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+		no sea takimata sanctus est Lorem ipsum dolor sit amet.}
+	</p>
+	<p><a class="btn btn-${4:primary} btn-lg" role="button">${3:Learn more}</a></p>
+</div>
+endsnippet
+
+snippet page-header
+<div class="page-header">
+	<h1>
+		${1:Page header}
+		${2:<small>${3:Subtext for header}</small>}
+	</h1>
+</div>
+endsnippet
+
+snippet alert
+<div class="alert alert-${1:info} ${2:alert-dismissible}" role="alert"> `!p
+if t[2] == 'alert-dismissible':
+	snip >> 1
+	snip += '<button type="button" class="close" data-dismiss="alert">'
+	snip >> 1
+	snip += '<span aria-hidden="true">&times;</span>'
+	snip += '<span class="sr-only">Close</span>'
+	snip << 1
+	snip += '</button>'
+else:
+	snip.rv = ''`
+	${3:<strong>$4</strong>}$0
+</div><!-- alert -->
+endsnippet
+
+snippet progress
+<div class="progress">
+	<div class="progress-bar" role="progressbar" style="width: ${1:60}%;"></div>
+	${2:$1%}
+</div><!-- progress -->
+endsnippet
+
+snippet progress-bar
+<div class="progress-bar" role="progressbar" style="width: ${1:60}%;"></div>$0
+endsnippet
+
+snippet list-group
+<ul class="list-group">
+	${1:<li class="list-group-item"></li>}$0
+</ul>
+endsnippet
+
+snippet panel
+<div class="panel panel-${1:default}">
+	<div class="panel-heading">
+		<h3 class="panel-title">${2:Panel title}</h3>
+	</div><!-- .panel-heading -->
+	<div class="panel-body">
+			${3:Panel body}
+	</div><!-- .panel-body -->
+	<div class="panel-footer">
+		${4:Panel footer}
+	</div><!-- .panel-footer -->
+</div><!-- panel -->
+endsnippet
+
+snippet well
+<div class="well">
+	${1:${VISUAL}}$0
+</div><!-- .well -->
+endsnippet
+
+# vim:set ft=snippets
