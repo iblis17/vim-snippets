@@ -630,13 +630,4 @@ class Test${1:Class}(${2:unittest.TestCase}):
 		${5:${VISUAL:pass}}$0
 endsnippet
 
-snippet djurls "Django urls.py" b
-from django.conf.urls import patterns, url
-
-
-urlpatterns = patterns('${1:module}${1/.+/.views/}',
-	url(r'^$', 'index', name='index'),$0
-)
-endsnippet
-
 # vim:ft=snippets:
