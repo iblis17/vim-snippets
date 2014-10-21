@@ -526,7 +526,7 @@ snippet try "try ... except" b
 try:
 	${1:${VISUAL:pass}}
 except${2: ${3:Exception} as ${4:e}}:
-	${5:${VISUAL:pass}}$0
+	${5:`!p snip.rv = ('print ' + t[4])if t[4] else 'pass'`}$0
 endsnippet
 
 snippet try "Try / Except / Else" b
