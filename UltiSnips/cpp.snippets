@@ -5,6 +5,23 @@ extends c
 # We want to overwrite everything in parent ft.
 priority -49
 
+snippet cc "Cpp init snippet" b
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	${0}
+	return 0;
+}
+
+endsnippet
+
+snippet cout "cout" b
+cout << ${1:"${2}"} << endl;$0
+endsnippet
+
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
