@@ -500,16 +500,7 @@ $1 = property(**$1(), doc=$1.__doc__)
 endsnippet
 
 snippet def "define function" b
-def ${1:function}(${2:self$3}`!p snip.rv = ', ' if t[2] and t[4] else ''`${4:*args, **kwargs}):
-	"""
-	${5:TODO: Docstring for $1}
-`!p
-snip.rv = ''
-snip >> 1
-docstring_params(t[2], snip)
-`
-	:return: ${6:TODO}
-	"""
+def ${1:function}(${2:${3:self$4}`!p snip.rv = ', ' if t[3] and t[5] else ''`${5:*args, **kwargs}}):
 	${7:${VISUAL:pass}}$0
 endsnippet
 
