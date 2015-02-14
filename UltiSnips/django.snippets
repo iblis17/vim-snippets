@@ -133,12 +133,16 @@ snippet ssi
 {% ssi "$1" %}$0
 endsnippet
 
-snippet trans
-{% trans "${1}" %}$0
+snippet trans "translation" i
+{% trans "${1:${VISUAL}}" %}$0
+endsnippet
+
+snippet static "static" i
+{% static "${1:${VISUAL}}" %}$0
 endsnippet
 
 snippet url "{% url '' %}" i
-{% url ${1}${2/\w+/ as /}${2:alias} %}$0
+{% url "${1:${VISUAL}}" %}$0
 endsnippet
 
 snippet verbatim

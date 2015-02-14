@@ -18,8 +18,28 @@ config(function($1) {
 });
 endsnippet
 
-snippet acont "angular controller" i
-controller('${1:name}', function($2) {
-	$0
-});
+snippet ng_cont "angular controller" i
+app.controller('${1}Controller', ['$scope', '$http',$2
+function($scope, $http) {
+	var self = this
+	${3:${VISUAL}}$0
+}])
+endsnippet
+
+snippet ng_cc "angular init" b
+(function(){
+	var app = angular.module('${1:App}', [])
+	.config(['$interpolateProvider', '$httpProvider',
+	function($interpolateProvider, $httpProvider) {
+		$interpolateProvider.startSymbol('[[')
+		$interpolateProvider.endSymbol(']]')
+
+		// for django request
+		$httpProvider.defaults.xsrfCookieName = 'csrftoken'
+		$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken'
+		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest'
+	}])
+
+	ng_cont$2
+})()
 endsnippet
