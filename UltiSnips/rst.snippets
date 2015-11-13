@@ -66,7 +66,10 @@ def check_file_exist(rst_path, relative_path):
 
 
 try:
-	rst_char_len = vim.strwidth  # Requires Vim 7.3+
+	vim.strwidth  # Requires Vim 7.3+
+
+	def rst_char_len(s, min_len=10):
+		return max(vim.strwidth(s), min_len)
 except AttributeError:
 	from unicodedata import east_asian_width
 	def rst_char_len(s):
@@ -128,45 +131,51 @@ def get_popular_code_type():
 endglobal
 
 snippet part "Part" b
-`!p snip.rv = rst_char_len(t[1])*'#'`
+`!p snip.rv = rst_char_len(t[1], 79)*'#'`
 ${1:${VISUAL:Part name}}
-`!p snip.rv = rst_char_len(t[1])*'#'`
+`!p snip.rv = rst_char_len(t[1], 79)*'#'`
 
 $0
 endsnippet
 
 snippet chap "Chapter" b
-`!p snip.rv = rst_char_len(t[1])*'*'`
 ${1:${VISUAL:Chapter name}}
-`!p snip.rv = rst_char_len(t[1])*'*'`
+`!p snip.rv = rst_char_len(t[1], 79)*'='`
 
 $0
 endsnippet
 
 snippet sec "Section" b
 ${1:${VISUAL:Section name}}
-`!p snip.rv = rst_char_len(t[1])*'='`
+`!p snip.rv = rst_char_len(t[1], 70)*'-'`
 
 $0
 endsnippet
 
 snippet ssec "Subsection" b
 ${1:${VISUAL:Subsection name}}
-`!p snip.rv = rst_char_len(t[1])*'-'`
+`!p snip.rv = rst_char_len(t[1], 60)*'+'`
 
 $0
 endsnippet
 
 snippet sssec "Subsubsection" b
 ${1:${VISUAL:Subsubsection name}}
-`!p snip.rv = rst_char_len(t[1])*'^'`
+`!p snip.rv = rst_char_len(t[1], 50)*'*'`
+
+$0
+endsnippet
+
+snippet ssssec "Subsubsubsection" b
+${1:${VISUAL:Subsubsection name}}
+`!p snip.rv = rst_char_len(t[1], 40)*'^'`
 
 $0
 endsnippet
 
 snippet para "Paragraph" b
 ${1:${VISUAL:Paragraph name}}
-`!p snip.rv = rst_char_len(t[1])*'"'`
+`!p snip.rv = rst_char_len(t[1], 30)*'"'`
 
 $0
 endsnippet
