@@ -20,12 +20,14 @@ ${VISUAL}${0}
 #endif
 endsnippet
 
-snippet inc "#include local header (inc)"
+snippet Inc "#include local header (inc)"
 #include "${1:`!p snip.rv = snip.basename + '.h'`}"
+${0}
 endsnippet
 
-snippet Inc "#include <> (Inc)"
+snippet inc "#include <> (Inc)"
 #include <${1:.h}>
+${0}
 endsnippet
 
 snippet mark "#pragma mark (mark)"
