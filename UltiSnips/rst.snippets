@@ -311,7 +311,13 @@ endsnippet
 snippet mb "math block"
 .. math::
 
-	$0
+	${2:${VISUAL}}
+endsnippet
+
+snippet begin "latex begin"
+\begin{$1}
+${2:${VISUAL}}
+\end{$1}
 endsnippet
 
 # vim:ft=snippets:
