@@ -2,6 +2,20 @@ priority -50
 
 extends texmath
 
+snippet cc "Init" b
+\documentclass{${1:article}}
+\begin{document}
+${1:${VISUAL}}
+\end{document}
+endsnippet
+
+snippet "doc(ument)?" "document" b
+\documentclass{${1:article}}
+\begin{${1:something}}
+	${2:${VISUAL}}
+\end{$1}
+endsnippet
+
 snippet "b(egin)?" "begin{} / end{}" br
 \begin{${1:something}}
 	${0:${VISUAL}}
