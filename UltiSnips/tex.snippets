@@ -4,8 +4,12 @@ extends texmath
 
 snippet cc "Init" b
 \documentclass{${1:article}}
+\author{Iblis Lin}
+\title{${2:title}}
 \begin{document}
-${1:${VISUAL}}
+
+${3:${VISUAL}}
+
 \end{document}
 endsnippet
 
@@ -121,4 +125,41 @@ endsnippet
 snippet lp "Long parenthesis"
 \left(${1:${VISUAL:contents}}\right)$0
 endsnippet
+
+snippet textsl "textsl"
+\textsl{${1:${VISUAL:words}}}$0
+endsnippet
+
+snippet title "title"
+\title{${1:${VISUAL}}}$0
+endsnippet
+
+snippet author "author"
+\author{${1:${VISUAL}}}$0
+endsnippet
+
+snippet ldots "ldots"
+\ldots{${1:${VISUAL}}}$0
+endsnippet
+
+snippet pagestyle "pagestyle"
+\pagestyle{${1:plain}}$0
+endsnippet
+
+snippet thispagestyle "thispagestyle"
+\thispagestyle{${1:plain}}$0
+endsnippet
+
+snippet include "include"
+\include{${1:filename}}$0
+endsnippet
+
+snippet includeonly "includeonly"
+\includeonly{${1:filename}}$0
+endsnippet
+
+snippet input  "input"
+\input{${1:filename}}$0
+endsnippet
+
 # vim:ft=snippets:
