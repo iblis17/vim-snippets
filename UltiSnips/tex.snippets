@@ -9,9 +9,7 @@ snippet cc "Init" b
 \author{Iblis Lin}
 
 \begin{document}
-
-${3:${VISUAL}}
-
+	${3:${VISUAL}}
 \end{document}
 endsnippet
 
@@ -198,6 +196,16 @@ endsnippet
 
 snippet mathrm
 \mathrm{${1:word}}$0
+endsnippet
+
+snippet tikz "TikZ" b
+\usepackage{tika}
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+
+\begin{tikzpicture}
+	${1:${VISUAL}}
+\end{tikzpicture}
 endsnippet
 
 # vim:ft=snippets:
