@@ -4,8 +4,10 @@ extends texmath
 
 snippet cc "Init" b
 \documentclass{${1:article}}
-\author{Iblis Lin}
+
 \title{${2:title}}
+\author{Iblis Lin}
+
 \begin{document}
 
 ${3:${VISUAL}}
@@ -160,6 +162,42 @@ endsnippet
 
 snippet input  "input"
 \input{${1:filename}}$0
+endsnippet
+
+snippet linebreak "linebreak"
+\linebreak[${1:n}]$0
+endsnippet
+
+snippet nolinebreak "nolinebreak"
+\nolinebreak[${1:n}]$0
+endsnippet
+
+snippet pagebreak "pagebreak"
+\pagebreak[${1:n}]$0
+endsnippet
+
+snippet nopagebreak "nopagebreak"
+\nopagebreak[${1:n}]$0
+endsnippet
+
+snippet hyphenation "hyphenation"
+\hyphenation{${1:word list}}$0
+endsnippet
+
+snippet mbox "mbox"
+\mbox{${1:word}}$0
+endsnippet
+
+snippet fbox
+\fbox{${1:word}}$0
+endsnippet
+
+snippet emph
+\emph{${1:word}}$0
+endsnippet
+
+snippet mathrm
+\mathrm{${1:word}}$0
 endsnippet
 
 # vim:ft=snippets:
