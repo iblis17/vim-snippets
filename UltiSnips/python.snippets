@@ -267,21 +267,21 @@ endsnippet
 ##############################################
 
 snippet if "If" b
-if ${1:condiction}:
+if ${1:condition}:
 	${2:${VISUAL:pass}}$0
 endsnippet
 
 snippet ife "If ... else" b
-if ${1:condiction}:
+if ${1:condition}:
 	${2:${VISUAL:pass}}
 else:
 	${3:${VISUAL:pass}}$0
 endsnippet
 
 snippet ifee "if ... elif ... else" b
-if ${1:condiction}:
+if ${1:condition}:
 	${2:${VISUAL:pass}}
-elif ${3:condiction}:
+elif ${3:condition}:
 	${4:${VISUAL:pass}}
 else:
 	${5:${VISUAL:pass}}$0
@@ -610,30 +610,6 @@ else:
 $1 = property(**$1(), doc=$1.__doc__)
 endsnippet
 
-
-####################
-# If / Else / Elif #
-####################
-snippet if "If" b
-if ${1:condition}:
-	${2:${VISUAL:pass}}
-endsnippet
-
-snippet ife "If / Else" b
-if ${1:condition}:
-	${2:${VISUAL:pass}}
-else:
-	${3:pass}
-endsnippet
-
-snippet ifee "If / Elif / Else" b
-if ${1:condition}:
-	${2:${VISUAL:pass}}
-elif ${3:condition}:
-	${4:pass}
-else:
-	${5:pass}
-endsnippet
 
 ##############################################
 #  try
